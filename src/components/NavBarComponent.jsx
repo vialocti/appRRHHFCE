@@ -26,8 +26,10 @@ const NavBarComponent = () => {
             <NavDropdown title="Reportes Asistencia" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/asistenciaarea">Reporte por Area</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/asistenciaclaustro">Reporte Doc/No Doc</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/asistenciapersona">Reporte por Agente</NavDropdown.Item>
-              
+             <NavDropdown.Item as={Link} to="/asistenciapersona">Reporte por Agente</NavDropdown.Item>
+             <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/promediosclaustro">Reporte Promedios</NavDropdown.Item>
+
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

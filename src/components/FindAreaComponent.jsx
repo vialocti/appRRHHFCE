@@ -159,7 +159,7 @@ const FindAreaComponent = () => {
         <Col xs={12} md={2}>
         {asistencia.length > 0 ? 
         <Button variant='outline'>
-        <CSVLink data={asistencia} filename={"asistenciaArea_" + document.getElementById('area').value +"_" + Date.now() + ".csv"}>Importar a CSV</CSVLink>
+        <CSVLink data={asistencia} filename={"asistenciaArea_" + document.getElementById('area').value +"_" + Date.now() + ".csv"}>Exportar</CSVLink>
         </Button>
         :null}
         </Col>

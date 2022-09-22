@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import FindAreaComponent from '../components/FindAreaComponent'
 import FindClaustroComponent from '../components/FindClaustroComponent'
+import FindClaustroPromediosComponent from '../components/FindClaustroPromediosComponent'
 import FindpersonaCargoComponent from '../components/FindpersonaCargoComponent'
 import FindPersonaComponent from '../components/FindPersonaComponent'
 import NavBarComponent from '../components/NavBarComponent'
@@ -19,7 +20,8 @@ const AppRouters = () => {
           <Route exact path='/asistenciaclaustro' element={<FindClaustroComponent/>}/>
           <Route exact path='/asistenciapersona' element={<FindPersonaComponent/>}/>
           <Route exact path='/cargospersona' element={<FindpersonaCargoComponent/>}/>
-           <Route exact path="/notFound" element={<PageNotFound />} />
+          <Route exact path='promediosclaustro' element={<FindClaustroPromediosComponent/>}/>
+          <Route exact path="/notFound" element={<PageNotFound />} />
           <Route path='*' element={<Navigate replace to='/'/>} />
       </Routes>
     </BrowserRouter>

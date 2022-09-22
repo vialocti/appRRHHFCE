@@ -101,7 +101,7 @@ const FindClaustroComponent = () => {
       <br />
       <Row className='busqueda'>
         <Col xs={12} md={4}>
-        <Form.Label htmlFor="condi"> Claustro </Form.Label>
+        <Form.Label htmlFor="condi"> Claustro: Asistencia </Form.Label>
           <Form.Select id="condi">
             <option>SELECCIONE CLAUSTRO</option>
             <option value="1">Personal Docentes</option>
@@ -140,7 +140,7 @@ const FindClaustroComponent = () => {
         <Col xs={12} md={2}>
         {asistencia.length > 0 ? 
         <Button variant='outline'>
-        <CSVLink data={asistencia} filename={"asistenciaClaustro_" + document.getElementById('condi').value +"_" + Date.now() + ".csv"}>Importar a CSV</CSVLink>
+        <CSVLink data={asistencia} filename={"asistenciaClaustro_" + document.getElementById('condi').value +"_" + Date.now() + ".csv"}>Exportar</CSVLink>
         </Button>
         :null}
         </Col>
