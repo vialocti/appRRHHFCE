@@ -3,7 +3,8 @@ import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 //import {CSVLink} from 'react-csv'
 import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
-import CargosConsultaPage from '../pages/CargosConsultaPage'
+import CargosConsultaPage from '../../pages/cargos/CargosConsultaPage'
+
 
 const FindpersonaCargoComponent = () => {
     const uri = 'http://200.12.136.74:4000/'
@@ -66,7 +67,7 @@ const FindpersonaCargoComponent = () => {
 
 
     buscarAgentes()
-
+    
    },[patronb])
 
 

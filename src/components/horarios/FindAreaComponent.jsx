@@ -4,9 +4,10 @@ import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es'
 import axios from 'axios'
-import ReporteAsistenciaPage from '../pages/ReporteAsistenciaPage';
-import '../css/estilospage.css'
+
+import '../../css/estilospage.css'
 import { CSVLink } from 'react-csv';
+import ReporteAsistenciaPage from '../../pages/asistencia/ReporteAsistenciaPage';
 registerLocale("es", es)
 
 const FindAreaComponent = () => {

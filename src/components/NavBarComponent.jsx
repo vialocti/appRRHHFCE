@@ -14,14 +14,29 @@ const NavBarComponent = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/agentes">Agentes</Nav.Link>
+
+          <NavDropdown title="Agentes" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/cargarpersona">Alta Persona</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/">Cargar Datos Personales</NavDropdown.Item>
+              
+              
+            </NavDropdown>
+
             
             <NavDropdown title="Cargos" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/cargospersona">Cargos por Persona</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/cargospersona">Alta Cargo</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/">Cargos Interinos</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/">Nuevo Cargo</NavDropdown.Item>
               
             </NavDropdown>
+
+            <NavDropdown title="Inasistencias" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/inasistencias">Registrar Inasistencia</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/">Registrar Licencia</NavDropdown.Item>
+            
+              
+            </NavDropdown>
+            
             
             <NavDropdown title="Reportes Asistencia" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/asistenciaarea">Reporte por Area</NavDropdown.Item>

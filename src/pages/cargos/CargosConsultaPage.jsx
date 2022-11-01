@@ -42,6 +42,7 @@ const CargosConsultaPage = (props) => {
           <td>{ele.fechaAlta}</td>
           <td>{ele.nresa}</td>
           <td>{ele.ncg}</td>
+          
 
       </tr>
       

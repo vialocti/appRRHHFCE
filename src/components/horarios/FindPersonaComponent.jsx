@@ -1,23 +1,28 @@
 import React, {useState, useEffect} from 'react'
-import { Button, Col, Container, Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Row, FormControl } from 'react-bootstrap'
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es'
 import axios from 'axios'
-import ReporteAsistenciaPage from '../pages/ReporteAsistenciaPage';
-import '../css/estilospage.css'
+
+import '../../css/estilospage.css'
 import { CSVLink } from 'react-csv';
+import ReporteAsistenciaPage from '../../pages/asistencia/ReporteAsistenciaPage';
+
 registerLocale("es", es)
 
-const FindClaustroComponent = () => {
+const FindPersonaComponent = () => {
 
   //esto a service luego
   const uri = 'http://200.12.136.74:4000/biometrico/'
-  const [ruta, setRuta] = useState(`${uri}horario_claustrofechas/3/1922-01-01/1922-01-01'`)
+  const [ruta, setRuta] = useState(`${uri}/horario_persofechas/5/666668/2022-01-01/2022-01-01`)
   const [asistencia, setAsistencia] = useState([])
-
+  const [agentes, setAgentes] =useState([])
+  const [patronb, setPatronb] = useState('')
   const [fechai,setFechai]=useState(new Date())
   const [fechaf,setFechaf]=useState(new Date())
+  
+
 
   useEffect(() => {
     
@@ -36,8 +41,29 @@ const FindClaustroComponent = () => {
     getAsistencia()
   }, [ruta])
   
+   useEffect(()=>{
+    const buscarAgentes =async ()=>{
+      let rutaag = `${uri}agente_name/${patronb}`
+      if (patronb.length>0){
+      try{
+        const res = await axios.get(rutaag)
+          
+            await setAgentes(res.data)
+            
+          
+      }catch(error){
+          console.log(error)
+      }
+    }
+    }
 
 
+    buscarAgentes()
+
+   },[patronb])
+ 
+
+  
 
  //funcion de conversion de fecha para consulta
    
@@ -85,29 +111,55 @@ const FindClaustroComponent = () => {
       //  console.log(fi)
       //  console.log(ff)
       }
-      let condi = document.getElementById('condi').value
+      let legajocondi = document.getElementById('agenteb').value
+      var legajo=''
+      var condi=''
+      if (legajocondi.length===5){
+        legajo=legajocondi.slice(0,4)
+        condi =legajocondi.slice(4)
+      }else if (legajocondi.length=== 6){
+        legajo=legajocondi.slice(0,5)
+        condi =legajocondi.slice(5)
+      }
+      //console.log(legajocondi,legajo, condi)
       
-      //et url = uri + 'horas_area_fecha/' + area + '/' + fi + '/' + ff
-      //let url = uri + horario_claustrofechas/' + condi +'/'+ fi + '/' + ff'
-      let url = `${uri}horario_claustrofechas/${condi}/${fi}/${ff}`
+      //let url = uri + 'horas_area_fecha/' + area + '/' + fi + '/' + ff
+      let url = `${uri}horario_persofechas/${condi}/${legajo}/${fi}/${ff}`
       //setUrlsec(sede + '/' + carrera + '/' + plan)
       setRuta(url)
+     // console.log(area, url)
       
-      
+  }
+
+  const onHandleChange =()=>{
+    // 
+    setPatronb(document.getElementById("busqueda").value)
+    // buscarAgentes()
+
   }
 
   return (
     <Container fluid>
       <br />
       <Row className='busqueda'>
-        <Col xs={12} md={4}>
-        <Form.Label htmlFor="condi"> Claustro: Asistencia </Form.Label>
-          <Form.Select id="condi">
-            <option>SELECCIONE CLAUSTRO</option>
-            <option value="1">Personal Docentes</option>
-            <option value="0">Personal No Docente</option>
+        <Col xs={12} md={2}>
+        <Form.Label htmlFor="busqueda"> Buscar </Form.Label>
+          <FormControl 
+            type="text"
+            id="busqueda"
+            onChange={onHandleChange}
+            value={patronb}
             
+          />
+        </Col>
+        <Col xs={12} md={3}>
+        <Form.Label htmlFor="agenteb"> Agentes </Form.Label>
+        <Form.Select id="agenteb">
+            { agentes.length>0 ? agentes.map((age,ind)=>
+               <option key={ind} value={age.legajo.toString()+age.condicion.toString()}>{age.apellido}</option>
+            ):null}
           </Form.Select>
+         
         </Col>
         
         <Col xs={12} md={2}>
@@ -131,26 +183,26 @@ const FindClaustroComponent = () => {
          
         </Col>
        
-        <Col xs={12} md={2}>
+        <Col xs={12} md={1}>
          <Button variant="primary" style={{marginTop:30}}
          onClick={buscarAsistencia}
-         >Ejecutar Busqueda
+         >Buscar
          </Button>
         </Col>
-        <Col xs={12} md={2}>
+        <Col xs={12} md={1}>
         {asistencia.length > 0 ? 
         <Button variant='outline'>
-        <CSVLink data={asistencia} filename={"asistenciaClaustro_" + document.getElementById('condi').value +"_" + Date.now() + ".csv"}>Exportar</CSVLink>
+        <CSVLink data={asistencia} filename={"asistenciaPersona_" + Date.now() + ".csv"}>Exportar</CSVLink>
         </Button>
         :null}
         </Col>
       </Row>
       <hr />
       <Row>
-      {asistencia.length > 0 ? <ReporteAsistenciaPage datosasistencia={asistencia} />:null} 
+      {asistencia.length > 0 ? <ReporteAsistenciaPage datosasistencia={asistencia} />: null} 
       </Row>
     </Container>
   )
 }
 
-export default FindClaustroComponent
+export default FindPersonaComponent
