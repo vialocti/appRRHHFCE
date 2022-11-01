@@ -52,6 +52,7 @@ const InasistenciaPage = () => {
 
    useEffect(()=>{
       //traer motivos de inasistencias
+      
       const getMotivos =async ()=>{
         let url=`${uri}cargos/motina`
         try {
@@ -62,6 +63,7 @@ const InasistenciaPage = () => {
         console.log(error) 
       }
     }
+    
       dispatch(addAgente(null))
      // getMotivos()
     },[dispatch])

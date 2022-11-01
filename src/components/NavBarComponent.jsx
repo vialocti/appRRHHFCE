@@ -24,7 +24,7 @@ const NavBarComponent = () => {
 
             
             <NavDropdown title="Cargos" id="basic-nav-dropdown">
-              <NavDropdown.Item as={Link} to="/cargospersona">Alta Cargo</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/cargospersona">Ver Cargos</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/">Cargos Interinos</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/">Nuevo Cargo</NavDropdown.Item>
               
