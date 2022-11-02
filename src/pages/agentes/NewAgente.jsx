@@ -5,11 +5,6 @@ import InputC from '../../components/elementosComp/InputComponent'
 import axios from 'axios'
 
 
-
-
-
-
-
 const NewAgente = () => {
     const uri = 'http://200.12.136.74:4000/biometrico/'
     const expresiones = {

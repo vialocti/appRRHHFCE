@@ -43,12 +43,21 @@ const FormInasistencia = ({agente, motivos}) => {
   nrores: ""
  }
  
- 
+   
  
  useEffect(() => {
 
-  
-    
+  const getInasistencias = async ()=>{
+    let strqry = `${uri}cargos/inasistenciasagente/${agente}`
+    try {
+        const res = await axios.get(strqry)
+        setInasistencias(res.data)         
+    } catch (error) {
+      
+    }
+  } 
+
+      
      /* traer cargos de agente
      const getCargos = async  () => {
       let str= `${uri}cargos/cargosvigentes/${agente}`
@@ -63,15 +72,7 @@ const FormInasistencia = ({agente, motivos}) => {
     }
     */
     //traer inasistencias
-    const getInasistencias = async ()=>{
-      let strqry = `${uri}cargos/inasistenciasagente/${agente}`
-      try {
-          const res = await axios.get(strqry)
-          setInasistencias(res.data)         
-      } catch (error) {
-        
-      }
-    } 
+  
 
 
 
@@ -82,6 +83,17 @@ const FormInasistencia = ({agente, motivos}) => {
      
  }, [agente])
  
+
+ 
+ const getInasistencias = async ()=>{
+  let strqry = `${uri}cargos/inasistenciasagente/${agente}`
+  try {
+      const res = await axios.get(strqry)
+      setInasistencias(res.data)         
+  } catch (error) {
+    
+  }
+} 
  
  const formatearfecha = (fecha)=>{
 
@@ -130,6 +142,7 @@ const grabarDatos=(e)=>{
       
     });
       setInasistencias([])
+      getInasistencias()
   })
   .catch((error)=>{
     Swal.fire({
@@ -234,7 +247,7 @@ const onChangeFf = (fecha)=>{
 
         
         <div className="row" id="inasistencialist">
-            {inasistencias.length > 0  ? <InsasitenciaMuestra inasistencias={inasistencias}/>: null} 
+            {inasistencias.length > 0  ? <InsasitenciaMuestra inasistenciasag={inasistencias}/>: null} 
         </div>
     </>
   )
