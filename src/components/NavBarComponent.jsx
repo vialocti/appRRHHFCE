@@ -1,12 +1,19 @@
 
-import React from 'react'
+import React  from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import {Link, Outlet} from 'react-router-dom'
 import '../css/estilospage.css'
 
 
+
 const NavBarComponent = () => {
-  return (
+
+
+
+
+
+
+return (
 <>    
     <Navbar className='menubar' bg="dark" variant='dark' expand="lg">
       <Container>
@@ -46,7 +53,9 @@ const NavBarComponent = () => {
               <NavDropdown.Item as={Link} to="/promediosclaustro">Reporte Promedios</NavDropdown.Item>
 
             </NavDropdown>
+            
           </Nav>
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>
